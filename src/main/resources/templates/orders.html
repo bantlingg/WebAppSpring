@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Orders</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding-top: 40px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    th, td {
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: #f7f7f7;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-container {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+
+    .logout-container button {
+      padding: 8px 16px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-container button:hover {
+      background-color: #c82333;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      th, td {
+        padding: 12px 14px;
+      }
+
+      .logout-container button {
+        font-size: 13px;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logout-container">
+    <form th:action="@{/logout}" method="post">
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+
+  <h1>Orders</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+      <td th:text="${order.id}"></td>
+      <td th:text="${order.description}"></td>
+      <td th:text="${order.amount}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
